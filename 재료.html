@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>재료 주문 계산 결과</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; line-height: 1.8; }
+    .box { background: #f5f5f5; padding: 1.5rem; border-radius: 8px; max-width: 500px; margin: auto; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>🧾 주문 요약</h2>
+    <p id="item"></p>
+    <p id="qty"></p>
+    <p id="price"></p>
+    <hr>
+    <p id="total" style="font-weight: bold;"></p>
+  </div>
+
+  <script>
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    const item = getQueryParam('item');
+    const qty = parseInt(getQueryParam('qty'));
+    const price = parseInt(getQueryParam('price'));
+    const total = qty * price;
+
+    document.getElementById('item').innerText = `재료명: ${item}`;
+    document.getElementById('qty').innerText = `수량: ${qty}`;
+    document.getElementById('price').innerText = `단가: ${price.toLocaleString()}원`;
+    document.getElementById('total').innerText = `총액: ${total.toLocaleString()}원`;
+  </script>
+</body>
+</html>
